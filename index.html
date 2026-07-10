@@ -1,66 +1,117 @@
+public/mrz/index.html
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Simple MRZ Generator</title>
-    <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>MRZ Generator — ICAO 9303</title>
+<meta name="description" content="Generate ICAO 9303 compliant Machine Readable Zone (MRZ) codes for passports, ID cards and visas." />
+<link rel="stylesheet" href="style.css" />
 </head>
-
-<body>
-
-<div class="container">
-
-<h1>MRZ Generator</h1>
-
-<p> Passport MRZ </p>
-
-
-<div class="form">
-
-<label>Full Name</label>
-<input type="text" placeholder="DOE JOHN">
-
-
-<label>Passport Number</label>
-<input type="text" placeholder="A12345678">
-
-
-<label>Nationality</label>
-<input type="text" placeholder="USA">
-
-
-<label>Date of Birth</label>
-<input type="date">
-
-
-<label>Expiry Date</label>
-<input type="date">
-
-
-<button>
-Generate MRZ
-</button>
-
-</div>
-
-
-
-<div class="passport">
-
-<h2>MRZ OUTPUT</h2>
-
-<div class="mrz">
-
-P&lt;USADOE&lt;&lt;JOHN&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;<br>
-
-A123456789USA9001011M3001017USA&lt;&lt;&lt;&lt;&lt;&lt;0
-
-</div>
-
-</div>
-
-
-</div>
-
-
+<body class="theme-dark">
+  <div class="bg-gradient"></div>
+  <header class="app-header">
+    <div class="brand">
+      <div class="brand-mark" aria-hidden="true">MRZ</div>
+      <div>
+        <h1>MRZ Generator</h1>
+        <p class="subtitle">ICAO Doc 9303 · Passport · ID Card · Visa</p>
+      </div>
+    </div>
+    <div class="header-actions">
+      <button id="themeToggle" class="icon-btn" title="Toggle theme (Ctrl+K)" aria-label="Toggle theme">🌙</button>
+    </div>
+  </header>
+  <main class="container">
+    <!-- FORM CARD -->
+    <section class="card glass" aria-labelledby="formTitle">
+      <div class="card-head">
+        <h2 id="formTitle">Document data</h2>
+        <div class="chip" id="docTypeChip">TD3 · Passport</div>
+      </div>
+      <form id="mrzForm" class="grid" novalidate>
+        <label class="field col-6">
+          <span>Document type</span>
+          <select id="docType" name="docType">
+            <option value="TD3">Passport (TD3)</option>
+            <option value="TD1">ID Card (TD1)</option>
+            <option value="MRVA">Visa A (MRV-A)</option>
+            <option value="MRVB">Visa B (MRV-B)</option>
+          </select>
+        </label>
+        <label class="field col-6">
+          <span>Issuing country (ICAO)</span>
+          <select id="issuingCountry" name="issuingCountry"></select>
+        </label>
+        <label class="field col-6">
+          <span>Surname</span>
+          <input id="surname" name="surname" type="text" autocomplete="family-name" placeholder="SMITH" required />
+        </label>
+        <label class="field col-6">
+          <span>Given names</span>
+          <input id="givenNames" name="givenNames" type="text" autocomplete="given-name" placeholder="JOHN PAUL" required />
+        </label>
+        <label class="field col-6">
+          <span>Document number</span>
+          <input id="docNumber" name="docNumber" type="text" maxlength="9" placeholder="L898902C3" required />
+        </label>
+        <label class="field col-6">
+          <span>Nationality (ICAO)</span>
+          <select id="nationality" name="nationality"></select>
+        </label>
+        <label class="field col-4">
+          <span>Date of birth</span>
+          <input id="dob" name="dob" type="date" required />
+        </label>
+        <label class="field col-2">
+          <span>Sex</span>
+          <select id="sex" name="sex">
+            <option value="M">M</option>
+            <option value="F">F</option>
+            <option value="X">X</option>
+          </select>
+        </label>
+        <label class="field col-3">
+          <span>Expiration date</span>
+          <input id="expiry" name="expiry" type="date" required />
+        </label>
+        <label class="field col-3">
+          <span>Personal number (opt.)</span>
+          <input id="personalNumber" name="personalNumber" type="text" maxlength="14" placeholder="ZE184226B" />
+        </label>
+        <div class="actions col-12">
+          <button type="submit" class="btn primary" id="generateBtn">
+            <span class="btn-label">Generate MRZ</span>
+            <span class="spinner" aria-hidden="true"></span>
+          </button>
+          <button type="button" class="btn" id="randomBtn" title="Fill with random data (Ctrl+R)">🎲 Random</button>
+          <button type="button" class="btn ghost" id="clearBtn" title="Clear form">Clear</button>
+        </div>
+      </form>
+    </section>
+    <!-- OUTPUT CARD -->
+    <section class="card glass" aria-labelledby="outputTitle">
+      <div class="card-head">
+        <h2 id="outputTitle">MRZ output</h2>
+        <div class="chip subtle" id="statusChip">Live preview</div>
+      </div>
+      <div class="passport" id="passportDisplay" aria-live="polite">
+        <pre id="mrzOutput" class="mrz-text" tabindex="0">Fill the form to preview…</pre>
+      </div>
+      <div class="checkdigits" id="checkDigits" aria-label="Check digits"></div>
+      <div class="actions">
+        <button type="button" class="btn" id="copyBtn" title="Copy MRZ (Ctrl+C)">📋 Copy</button>
+        <button type="button" class="btn" id="txtBtn">⬇ TXT</button>
+        <button type="button" class="btn" id="pngBtn">🖼 PNG</button>
+        <button type="button" class="btn" id="printBtn" title="Print (Ctrl+P)">🖨 Print</button>
+      </div>
+    </section>
+  </main>
+  <footer class="app-footer">
+    <p>Built for educational use · Complies with ICAO 9303 formatting rules · Shortcuts: Ctrl+Enter generate · Ctrl+K theme · Ctrl+R random</p>
+  </footer>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <canvas id="renderCanvas" width="1200" height="360" style="display:none"></canvas>
+  <script src="script.js"></script>
 </body>
 </html>
