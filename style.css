@@ -1,0 +1,802 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+
+/* ===============================
+   GLOBAL SETTINGS
+================================ */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+:root {
+
+    --bg:
+    linear-gradient(
+        135deg,
+        #050816,
+        #101b35,
+        #1d3557
+    );
+
+    --glass:
+    rgba(255,255,255,0.08);
+
+    --border:
+    rgba(255,255,255,0.15);
+
+    --text:
+    #ffffff;
+
+    --muted:
+    #b9c2d0;
+
+    --primary:
+    #00d4ff;
+
+    --secondary:
+    #6c63ff;
+
+    --danger:
+    #ff4b5c;
+
+}
+
+
+
+body {
+
+    min-height:100vh;
+
+    background:
+    var(--bg);
+
+    color:
+    var(--text);
+
+    font-family:
+    Inter,
+    Arial,
+    sans-serif;
+
+    overflow-x:hidden;
+
+}
+
+
+
+/* ===============================
+   BACKGROUND EFFECT
+================================ */
+
+.background {
+
+    position:fixed;
+
+    inset:0;
+
+    z-index:-1;
+
+    background:
+
+    radial-gradient(
+        circle at top left,
+        rgba(0,212,255,.25),
+        transparent 35%
+    ),
+
+    radial-gradient(
+        circle at bottom right,
+        rgba(108,99,255,.25),
+        transparent 35%
+    );
+
+}
+
+
+
+/* ===============================
+   HEADER
+================================ */
+
+
+.topbar {
+
+    width:100%;
+
+    padding:20px 40px;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+}
+
+
+
+.logo {
+
+    font-size:26px;
+
+    font-weight:700;
+
+}
+
+
+
+.icon-btn {
+
+    border:none;
+
+    background:
+    var(--glass);
+
+    color:white;
+
+    font-size:22px;
+
+    padding:10px 15px;
+
+    border-radius:50%;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+
+.icon-btn:hover {
+
+    transform:rotate(20deg) scale(1.1);
+
+}
+
+
+
+
+/* ===============================
+   MAIN CONTAINER
+================================ */
+
+
+.container {
+
+    width:95%;
+
+    max-width:1200px;
+
+    margin:auto;
+
+    display:grid;
+
+    gap:25px;
+
+    padding-bottom:40px;
+
+}
+
+
+
+
+/* ===============================
+   GLASS CARD
+================================ */
+
+
+.glass-card {
+
+    background:
+    var(--glass);
+
+    backdrop-filter:
+    blur(20px);
+
+    border:
+
+    1px solid var(--border);
+
+
+    border-radius:25px;
+
+    padding:30px;
+
+    box-shadow:
+
+    0 20px 50px rgba(0,0,0,.35);
+
+}
+
+
+
+h1 {
+
+    font-size:35px;
+
+    margin-bottom:10px;
+
+}
+
+
+
+h2 {
+
+    margin-bottom:20px;
+
+}
+
+
+.subtitle {
+
+    color:
+    var(--muted);
+
+    margin-bottom:30px;
+
+}
+
+
+
+
+/* ===============================
+   FORM
+================================ */
+
+
+.form-grid {
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(auto-fit,minmax(250px,1fr));
+
+    gap:20px;
+
+}
+
+
+
+.input-group {
+
+    display:flex;
+
+    flex-direction:column;
+
+}
+
+
+
+label {
+
+    margin-bottom:8px;
+
+    font-weight:600;
+
+}
+
+
+
+input,
+select {
+
+
+    width:100%;
+
+    padding:14px;
+
+    border-radius:12px;
+
+    border:
+
+    1px solid rgba(255,255,255,.2);
+
+
+    background:
+
+    rgba(0,0,0,.25);
+
+
+    color:white;
+
+
+    outline:none;
+
+    transition:.3s;
+
+}
+
+
+
+input:focus,
+select:focus {
+
+
+    border-color:
+    var(--primary);
+
+    box-shadow:
+
+    0 0 15px rgba(0,212,255,.4);
+
+}
+
+
+
+
+option {
+
+    color:black;
+
+}
+
+
+
+
+
+/* ===============================
+ BUTTONS
+================================ */
+
+
+.buttons,
+.action-buttons {
+
+
+    display:flex;
+
+    flex-wrap:wrap;
+
+    gap:15px;
+
+    margin-top:30px;
+
+}
+
+
+
+button {
+
+
+    padding:13px 22px;
+
+    border:none;
+
+    border-radius:14px;
+
+    cursor:pointer;
+
+    color:white;
+
+    font-weight:600;
+
+    transition:.3s;
+
+}
+
+
+
+button:hover {
+
+
+    transform:
+
+    translateY(-3px);
+
+}
+
+
+
+
+.primary-btn {
+
+
+    background:
+
+    linear-gradient(
+    135deg,
+    #00d4ff,
+    #0077ff
+    );
+
+}
+
+
+
+.secondary-btn {
+
+
+    background:
+
+    linear-gradient(
+    135deg,
+    #6c63ff,
+    #9d4edd
+    );
+
+
+}
+
+
+
+.danger-btn {
+
+
+    background:
+
+    linear-gradient(
+    135deg,
+    #ff416c,
+    #ff4b2b
+    );
+
+
+}
+
+
+
+.action-buttons button {
+
+
+    background:
+
+    rgba(255,255,255,.12);
+
+}
+
+
+
+
+
+/* ===============================
+   LOADING
+================================ */
+
+
+.loading {
+
+
+    margin-top:20px;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:15px;
+
+}
+
+
+
+.hidden {
+
+    display:none;
+
+}
+
+
+
+.spinner {
+
+
+    width:25px;
+
+    height:25px;
+
+
+    border:
+
+    4px solid rgba(255,255,255,.2);
+
+
+    border-top-color:
+
+    var(--primary);
+
+
+    border-radius:50%;
+
+
+    animation:
+
+    spin 1s linear infinite;
+
+
+}
+
+
+
+@keyframes spin {
+
+
+    to {
+
+        transform:rotate(360deg);
+
+    }
+
+}
+
+
+
+
+
+/* ===============================
+ MRZ DISPLAY
+================================ */
+
+
+.passport-preview {
+
+
+    background:
+
+    linear-gradient(
+        145deg,
+        #e9eef5,
+        #cfd8e3
+    );
+
+
+    padding:25px;
+
+    border-radius:18px;
+
+    color:black;
+
+}
+
+
+
+.passport-header {
+
+
+    display:flex;
+
+    justify-content:space-between;
+
+    font-weight:bold;
+
+    margin-bottom:20px;
+
+}
+
+
+
+.mrz-box {
+
+
+    background:#fff;
+
+    padding:20px;
+
+
+    border-radius:10px;
+
+
+    font-family:
+
+    "OCR-B",
+    "Roboto Mono",
+    monospace;
+
+
+    font-size:20px;
+
+
+    letter-spacing:2px;
+
+
+    overflow-x:auto;
+
+
+    line-height:1.7;
+
+}
+
+
+
+
+
+/* ===============================
+ CHECK DIGITS
+================================ */
+
+
+.check-section {
+
+
+    margin-top:25px;
+
+
+    padding:20px;
+
+
+    background:
+
+    rgba(0,0,0,.25);
+
+
+    border-radius:15px;
+
+
+}
+
+
+
+
+#checks {
+
+
+    color:
+
+    #00ffcc;
+
+    font-family:
+
+    monospace;
+
+}
+
+
+
+
+
+/* ===============================
+ TOAST
+================================ */
+
+
+#toast {
+
+
+    position:fixed;
+
+
+    bottom:30px;
+
+
+    right:30px;
+
+
+    padding:15px 25px;
+
+
+    border-radius:12px;
+
+
+    background:#111;
+
+
+    color:white;
+
+
+    opacity:0;
+
+
+    pointer-events:none;
+
+
+    transition:.4s;
+
+
+}
+
+
+
+#toast.show {
+
+
+    opacity:1;
+
+
+}
+
+
+
+
+
+/* ===============================
+ INVALID FIELD
+================================ */
+
+
+.invalid {
+
+
+    border:
+
+    2px solid #ff4b5c !important;
+
+
+    animation:
+
+    shake .3s;
+
+}
+
+
+
+@keyframes shake {
+
+
+    25% {
+
+        transform:translateX(-5px);
+
+    }
+
+
+    75% {
+
+        transform:translateX(5px);
+
+    }
+
+}
+
+
+
+
+
+/* ===============================
+ MOBILE
+================================ */
+
+
+@media(max-width:600px){
+
+
+.topbar {
+
+    padding:20px;
+
+}
+
+
+.logo {
+
+    font-size:21px;
+
+}
+
+
+
+.glass-card {
+
+    padding:20px;
+
+}
+
+
+
+h1 {
+
+    font-size:26px;
+
+}
+
+
+
+.mrz-box {
+
+
+    font-size:14px;
+
+}
+
+
+
+button {
+
+
+    width:100%;
+
+}
+
+
+}
