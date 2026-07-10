@@ -1,4 +1,3 @@
-public/mrz/script.js
 /**
  * MRZ Generator — ICAO 9303 compliant
  * Pure vanilla JavaScript. No dependencies.
