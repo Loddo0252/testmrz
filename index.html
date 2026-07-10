@@ -1,417 +1,66 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>ICAO MRZ Generator</title>
-
+    <title>Simple MRZ Generator</title>
     <link rel="stylesheet" href="style.css">
-
-    <!-- OCR-B style fallback -->
-    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
-
 </head>
 
 <body>
 
-<div class="background"></div>
+<div class="container">
 
+<h1>MRZ Generator</h1>
 
-<header class="topbar">
+<p> Passport MRZ </p>
 
-    <div class="logo">
-        🛂 MRZ Generator
-    </div>
 
-    <button id="themeToggle" class="icon-btn">
-        🌙
-    </button>
+<div class="form">
 
-</header>
+<label>Full Name</label>
+<input type="text" placeholder="DOE JOHN">
 
 
+<label>Passport Number</label>
+<input type="text" placeholder="A12345678">
 
-<main class="container">
 
+<label>Nationality</label>
+<input type="text" placeholder="USA">
 
-<section class="glass-card">
 
-<h1>
-    Machine Readable Zone Generator
-</h1>
+<label>Date of Birth</label>
+<input type="date">
 
-<p class="subtitle">
-    ICAO 9303 compliant passport, ID card and visa MRZ generator
-</p>
 
+<label>Expiry Date</label>
+<input type="date">
 
 
-<div class="form-grid">
-
-
-<div class="input-group">
-
-<label>
-Document Type
-</label>
-
-<select id="documentType">
-
-<option value="TD3">
-Passport (TD3)
-</option>
-
-<option value="TD1">
-ID Card (TD1)
-</option>
-
-<option value="MRVA">
-Visa A (MRV-A)
-</option>
-
-<option value="MRVB">
-Visa B (MRV-B)
-</option>
-
-</select>
-
-</div>
-
-
-
-
-<div class="input-group">
-
-<label>
-Issuing Country
-</label>
-
-<select id="issuingCountry">
-
-<option value="JPN">
-Japan (JPN)
-</option>
-
-<option value="USA">
-United States (USA)
-</option>
-
-<option value="GBR">
-United Kingdom (GBR)
-</option>
-
-<option value="NGA">
-Nigeria (NGA)
-</option>
-
-</select>
-
-</div>
-
-
-
-
-<div class="input-group">
-
-<label>
-Surname
-</label>
-
-<input 
-id="surname"
-type="text"
-placeholder="DOE">
-
-</div>
-
-
-
-<div class="input-group">
-
-<label>
-Given Names
-</label>
-
-<input 
-id="givenNames"
-type="text"
-placeholder="JOHN MICHAEL">
-
-</div>
-
-
-
-
-<div class="input-group">
-
-<label>
-Passport / Document Number
-</label>
-
-<input 
-id="documentNumber"
-type="text"
-placeholder="A12345678">
-
-</div>
-
-
-
-
-<div class="input-group">
-
-<label>
-Nationality
-</label>
-
-<select id="nationality">
-
-<option value="JPN">
-Japan
-</option>
-
-<option value="USA">
-United States
-</option>
-
-<option value="GBR">
-United Kingdom
-</option>
-
-<option value="NGA">
-Nigeria
-</option>
-
-</select>
-
-</div>
-
-
-
-
-<div class="input-group">
-
-<label>
-Date of Birth
-</label>
-
-<input
-id="birthDate"
-type="date">
-
-</div>
-
-
-
-
-<div class="input-group">
-
-<label>
-Sex
-</label>
-
-<select id="sex">
-
-<option value="M">
-Male
-</option>
-
-<option value="F">
-Female
-</option>
-
-<option value="X">
-Unspecified
-</option>
-
-</select>
-
-</div>
-
-
-
-
-<div class="input-group">
-
-<label>
-Expiration Date
-</label>
-
-<input
-id="expiryDate"
-type="date">
-
-</div>
-
-
-
-
-<div class="input-group">
-
-<label>
-Personal Number (Optional)
-</label>
-
-<input
-id="personalNumber"
-type="text"
-placeholder="123456789">
-
-</div>
-
-
-
-</div>
-
-
-
-
-<div class="buttons">
-
-
-<button id="generateBtn" class="primary-btn">
+<button>
 Generate MRZ
 </button>
 
-
-<button id="randomBtn" class="secondary-btn">
-Random Data
-</button>
-
-
-<button id="clearBtn" class="danger-btn">
-Clear
-</button>
-
-
 </div>
 
 
 
-<div class="loading hidden" id="loading">
+<div class="passport">
 
-<div class="spinner"></div>
+<h2>MRZ OUTPUT</h2>
 
-Generating...
+<div class="mrz">
 
-</div>
+P&lt;USADOE&lt;&lt;JOHN&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;<br>
 
-
-
-</section>
-
-
-
-
-
-<section class="glass-card">
-
-
-<h2>
-MRZ Preview
-</h2>
-
-
-
-<div class="passport-preview">
-
-
-<div class="passport-header">
-
-<span>
-DOCUMENT MRZ
-</span>
-
-<span>
-ICAO 9303
-</span>
+A123456789USA9001011M3001017USA&lt;&lt;&lt;&lt;&lt;&lt;0
 
 </div>
-
-
-
-<div id="mrzOutput" class="mrz-box">
-
-P&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;
-<br>
-
-P&lt;UTOERIKSSON&lt;&lt;ANNA&lt;MARIA&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;
-
-</div>
-
-
-
-</div>
-
-
-
-
-
-<div class="check-section">
-
-<h3>
-Check Digits
-</h3>
-
-
-<div id="checks">
-
-No MRZ generated yet.
 
 </div>
 
 
 </div>
 
-
-
-
-<div class="action-buttons">
-
-
-<button id="copyBtn">
-Copy MRZ
-</button>
-
-
-<button id="downloadTxtBtn">
-Download TXT
-</button>
-
-
-<button id="downloadPngBtn">
-Download PNG
-</button>
-
-
-<button id="printBtn">
-Print
-</button>
-
-
-</div>
-
-
-
-</section>
-
-
-
-</main>
-
-
-
-<div id="toast">
-
-Copied successfully
-
-</div>
-
-
-
-
-<script src="script.js"></script>
 
 </body>
 </html>
